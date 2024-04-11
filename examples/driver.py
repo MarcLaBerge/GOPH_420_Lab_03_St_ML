@@ -89,6 +89,7 @@ def main():
     Z = np.ones_like(N) * -M 
     #Combining the columns into the final Z matrix
     Z = np.column_stack((ones, Z))
+    
 
 if __name__ == "__main__":
     main()
