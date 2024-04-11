@@ -50,7 +50,7 @@ def multi_regress(y, Z):
     sr = np.matmul(np.transpose(e_res), e_res)
 
     #Calculate the R^2 of the model
-    r_squared = float ((sy - sy) / sy)
+    r_squared = float((sy - sr) / sy)
 
     return a_coef, e_res, r_squared
 
