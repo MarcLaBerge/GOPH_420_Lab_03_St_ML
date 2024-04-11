@@ -16,7 +16,7 @@ def main():
     #Independant data -> time
     Z = data[:,0]
 
-    #Picking the indexes of days 2-5
+    #Picking the indexes of days 2-5, row number looking at every 24 hours
     days = [3928, 5684, 6974, 9536]
 
     #Plotting the data for each day
@@ -42,7 +42,7 @@ def main():
     #a, e, rsq = multi_regress(y, Z)
 
 
-    #Plot the weird cuts of data
+    #Plot the periods of data
     cuts = [34, 46, 72, 96]
     plt.figure(figsize = (15, 15))
     plt.plot(Z,y, 'rx', fillstyle = 'none', label = "Data points")
@@ -56,6 +56,39 @@ def main():
     plt.legend(loc = 'lower left')
     plt.savefig('figures/data_cuts')
     plt.close("all")
+
+
+    #Set time indices into array and assign the time
+    t = 0
+    index = np.zeros(0, dtype = int)
+    for i in cuts:
+        while i > Z[t]:
+            t += 1
+        index = np.append(index, t)
+
+    #Cuts of the magnitude data during chosen periods
+    mag = y[:index[0]]
+    mag1 = y[index[0], index[1]]
+    mag2 = y[index[1], index[2]]
+    mag3 = y[index[2], index[3]]
+    mag4 = y[index[3]:]
+
+    #Number of events in each cut
+    M = np.linspace(0, 1.5, num = 20)
+    N =[sum(1 for j in mag if j > M[m]) for m in range(len(M))] 
+    N1 = [sum(1 for j in mag1 if j > M[m]) for m in range(len(M))]
+    N2 = [sum(1 for j in mag2 if j > M[m]) for m in range(len(M))]
+    N3 = [sum(1 for j in mag3 if j > M[m]) for m in range(len(M))]
+    N4 = [sum(1 for j in mag4 if j > M[m]) for m in range(len(M))]
+    N_arrays = [N, N1, N2, N3, N4]
+
+    #Create the Z matrix with the info above
+    #First row is 1s
+    ones = np.ones_like(N)
+    #Exponents of equation 4.3, the coefficient b will therefor be +
+    Z = np.ones_like(N) * -M 
+    #Combining the columns into the final Z matrix
+    Z = np.column_stack((ones, Z))
 
 if __name__ == "__main__":
     main()
