@@ -34,10 +34,28 @@ def main():
     for i in ax:
         i.legend(loc = "upper right")
 
+    #Labeling the axis once, not every time
     ax[2].set_ylabel('magnitude [M]')
     ax[4].set_xlabel('time [hr]')
     plt.savefig('figures/data_per_day.png')
+    plt.close("all")
     #a, e, rsq = multi_regress(y, Z)
+
+
+    #Plot the weird cuts of data
+    cuts = [34, 46, 72, 96]
+    plt.figure(figsize = (15, 15))
+    plt.plot(Z,y, 'rx', fillstyle = 'none', label = "Data points")
+    plt.xlabel("Time [Hr]", fontsize = 30 )
+    plt.ylabel("Magnitude [M]", fontsize = 30)
+    plt.grid()
+
+    #Adding lines to better visualise these cuts (vertical)
+    for i in cuts:
+        plt.vlines(i, -1.5, 1.5, color = 'black', linewidth = 4)
+    plt.legend(loc = 'lower left')
+    plt.savefig('figures/data_cuts')
+    plt.close("all")
 
 if __name__ == "__main__":
     main()
