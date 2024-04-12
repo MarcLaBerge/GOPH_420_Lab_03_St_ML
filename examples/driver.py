@@ -74,6 +74,7 @@ def main():
     y4 = magnitude[index[3]:]
 
     #Number of events in each cut
+    #interval has to not divide by 0 in the future, and where linear regression works
     M = np.linspace(-0.25, 1, num = 25)
     N0 =[sum(1 for j in y0 if j > M[m]) for m in range(len(M))] 
     N1 = [sum(1 for j in y1 if j > M[m]) for m in range(len(M))]
