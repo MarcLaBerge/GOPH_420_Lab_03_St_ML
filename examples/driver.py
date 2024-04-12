@@ -35,8 +35,8 @@ def main():
         i.legend(loc = "upper right")
 
     #Labeling the axis once, not every time
-    ax[2].set_ylabel('Magnitude [M]', fontsize = 25)
-    ax[4].set_xlabel('Time [hr]', fontsize = 25)
+    ax[2].set_ylabel('Magnitude, M', fontsize = 25)
+    ax[4].set_xlabel('Time, t [hrs]', fontsize = 25)
     plt.savefig('figures/data_per_day.png')
     plt.close("all")
     #a, e, rsq = multi_regress(y, Z)
@@ -46,8 +46,8 @@ def main():
     cuts = [34, 46, 72, 96]
     plt.figure(figsize = (15, 15))
     plt.plot(time,magnitude, 'rx', fillstyle = 'none', label = "Data points")
-    plt.xlabel("Time [Hr]", fontsize = 25)
-    plt.ylabel("Magnitude [M]", fontsize = 25)
+    plt.xlabel("Time, t [hrs]", fontsize = 25)
+    plt.ylabel("Magnitude, M", fontsize = 25)
     plt.grid()
 
     #Adding lines to better visualise these cuts (vertical)
@@ -118,7 +118,7 @@ def main():
         #equation2 = f"$R^2$ = {rsq:.4f}"
         #Plotting the model
         plt.plot(rgr, M, '.-.r', label = equation1) #and equation2)
-        plt.ylabel("Magnitudes [M]")
+        plt.ylabel("Magnitudes, M")
         plt.xlabel("Number of events")
         plt.legend()
         plt.savefig(f"figures/{labels[j]}.png")
