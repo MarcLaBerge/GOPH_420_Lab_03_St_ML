@@ -114,7 +114,7 @@ def main():
         plt.semilogx(num, M, 'bx', label = 'Number of events with \ncorresponding magnitudes'
                      +f'$\geq$M')
         #labeling 4.3 in figure, with decimal points
-        equation1 = f"10^({a[0]:.2f} - {a[1]:.2f}M) \n $R^2$ = {rsq:.4f}"
+        equation1 = f"N = 10^({a[0]:.2f} - {a[1]:.2f}M) \n $R^2$ = {rsq:.4f}"
         #equation2 = f"$R^2$ = {rsq:.4f}"
         #Plotting the model
         plt.plot(rgr, M, '.-.r', label = equation1) #and equation2)
