@@ -6,6 +6,12 @@ from lab_03.regression import multi_regress
 def main():
     """
     Driver script implementation of multi linear regression for earthquake magnitude data.
+
+    Gutenberg-Richter Law
+    N = 10^(a - bM)
+
+    Linearised version
+    log10(N) = a - bM
     """
     #Grabbing data from files on the repository
     data = np.loadtxt('data/M_data.txt')
