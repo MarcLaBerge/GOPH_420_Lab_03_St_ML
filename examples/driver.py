@@ -77,12 +77,12 @@ def main():
     #interval has to not divide by 0 in the future, and where linear regression works
     M = np.linspace(-0.25, 1, num = 25)
 
-    #Counting the number of values with magnitudes greater than M(m), interval limit is the same as M
-    N0 =[sum(1 for j in y0 if j > M[m]) for m in range(len(M))]
-    N1 = [sum(1 for j in y1 if j > M[m]) for m in range(len(M))]
-    N2 = [sum(1 for j in y2 if j > M[m]) for m in range(len(M))]
-    N3 = [sum(1 for j in y3 if j > M[m]) for m in range(len(M))]
-    N4 = [sum(1 for j in y4 if j > M[m]) for m in range(len(M))]
+    #Counting the number of values with magnitudes greater than M(k), interval limit is the same as M
+    N0 = [sum(1 for j in y0 if j > M[k]) for k in range(len(M))]
+    N1 = [sum(1 for j in y1 if j > M[k]) for k in range(len(M))]
+    N2 = [sum(1 for j in y2 if j > M[k]) for k in range(len(M))]
+    N3 = [sum(1 for j in y3 if j > M[k]) for k in range(len(M))]
+    N4 = [sum(1 for j in y4 if j > M[k]) for k in range(len(M))]
     N_arrays = [N0, N1, N2, N3, N4]
 
     #Create the Z matrix with the info above
