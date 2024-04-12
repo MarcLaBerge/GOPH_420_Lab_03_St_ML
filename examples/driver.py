@@ -74,7 +74,7 @@ def main():
     y4 = magnitude[index[3]:]
 
     #Number of events in each cut
-    M = np.linspace(-0.25, 1, num = 18)
+    M = np.linspace(-0.25, 1, num = 25)
     N0 =[sum(1 for j in y0 if j > M[m]) for m in range(len(M))] 
     N1 = [sum(1 for j in y1 if j > M[m]) for m in range(len(M))]
     N2 = [sum(1 for j in y2 if j > M[m]) for m in range(len(M))]
@@ -103,24 +103,22 @@ def main():
     
     for j, num in enumerate(N_arrays):
         #Keeping in mind that to solve equation 4.3, the log will have to be taken
+        plt.figure()
         a, e, rsq = multi_regress(np.log10(num), Z)
         rgr = 10 ** np.matmul(Z, a)
         res[j] = np.append(res[j], e)
         #Plotting a log scale on the y axis
-        plt.semilogy(M, num, 'bx', label = 'Number of events with corresponding magnitudes'+f'$\geq$M')
+        plt.semilogx(num, M, 'bx', label = 'Number of events with \ncorresponding magnitudes'
+                     +f'$\geq$M')
         #labeling 4.3 in figure, with decimal points
         equation1 = f"10^({a[0]:.2f} - {a[1]:.2f}M) \n $R^2$ = {rsq:.4f}"
         #equation2 = f"$R^2$ = {rsq:.4f}"
         #Plotting the model
-        plt.plot(M, rgr, '.-.r', label = equation1) #and equation2)
-        plt.xlabel("Magnitudes [M]")
-        plt.ylabel("Number of events")
+        plt.plot(rgr, M, '.-.r', label = equation1) #and equation2)
+        plt.ylabel("Magnitudes [M]")
+        plt.xlabel("Number of events")
         plt.legend()
         plt.savefig(f"figures/{labels[j]}.png")
-
-
-
-        plt.figure()
 
 if __name__ == "__main__":
     main()
